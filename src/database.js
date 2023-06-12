@@ -1,18 +1,18 @@
 const mongoose = require('mongoose')
+const {DBUSER,DBPASSWORD,DBNAME} = process.env
 
-const MONGODB_URL='mongodb://0.0.0.0:27017/portafolio'
+const MONGODB_URI = `mongodb+srv://${DBUSER}:${DBPASSWORD}@inicio.vwjmgsk.mongodb.net/${DBNAME}`
 
-
-connection=async()=>{
+connection = async()=>{
     try {
-        await mongoose.connect(MONGODB_URL,{
+         await mongoose.connect(MONGODB_URI,{
             useUnifiedTopology:true,
             useNewUrlParser:true
         })
-        console.log("database conectado")
-
+        console.log("Database is connected")
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 }
-module.exports=connection
+
+module.exports = connection
